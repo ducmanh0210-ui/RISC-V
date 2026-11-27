@@ -43,10 +43,23 @@ module tb_wb_stage;
         check_wb(2'b01, 32'hBBBB0002);
         check_wb(2'b10, 32'h00000004);
         check_wb(2'b11, 32'h00000000);
-
-        // Doi du lieu vao khi giu nguyen sel: dau ra phai theo ngay (to hop).
+    
+        // Chon ALU truoc.
+        check_wb(2'b00, 32'hAAAA0001);
+        
+        // Giu wb_sel_i = 00, chi thay doi du lieu ALU.
         alu_result_i = 32'h12345678;
         check_wb(2'b00, 32'h12345678);
+        
+        // Chon bo nho, sau do giu sel = 01 va thay du lieu.
+        check_wb(2'b01, 32'hBBBB0002);
+        mem_data_i = 32'h87654321;
+        check_wb(2'b01, 32'h87654321);
+        
+        // Chon PC+4, sau do giu sel = 10 va thay du lieu.
+        check_wb(2'b10, 32'h00000004);
+        pc_plus4_i = 32'h00000104;
+        check_wb(2'b10, 32'h00000104);
 
         if (errors == 0)
             $display("PASS: All wb_stage tests passed.");
