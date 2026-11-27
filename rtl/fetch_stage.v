@@ -1,5 +1,4 @@
 `timescale 1ns / 1ps
-`default_nettype wire
 `default_nettype none
 
 module fetch_stage #(
