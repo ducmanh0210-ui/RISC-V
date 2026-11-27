@@ -116,7 +116,24 @@ module tb_alu;
 
         // 16. SLT: 1 < -1 -> sai
         check_alu(ALU_SLT, 32'd1, 32'hFFFFFFFF, 32'd0);
-
+        
+        // Dich 0 bit: giu nguyen.
+        check_alu(ALU_SLL, 32'h12345678, 32'd0, 32'h12345678);
+        
+        // Dich toi da 31 bit.
+        check_alu(ALU_SLL, 32'd1, 32'd31, 32'h80000000);
+        check_alu(ALU_SRL, 32'h80000000, 32'd31, 32'd1);
+        check_alu(ALU_SRA, 32'h80000000, 32'd31, 32'hFFFFFFFF);
+        
+        // Cong vuot mien so co dau: van giu 32 bit ket qua.
+        check_alu(ALU_ADD, 32'h7FFFFFFF, 32'd1, 32'h80000000);
+        
+        // So sanh bien co dau.
+        check_alu(ALU_SLT, 32'h80000000, 32'h7FFFFFFF, 32'd1);
+        
+        // Ma dieu khien khong duoc dinh nghia: theo default tra 0.
+        check_alu(4'b1111, 32'h12345678, 32'h87654321, 32'd0);
+        
         if (errors == 0)
             $display("PASS: All %0d ALU tests passed.", test_id);
         else
