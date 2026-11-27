@@ -24,7 +24,7 @@ Dự án xây dựng bộ xử lý RISC-V 32 bit bằng Verilog HDL, thực hi�
 4. Tổ chức mã nguồn
 | `rtl/` | Mã nguồn các khối thiết kế |
 | `tb/` | Testbench kiểm tra các khối |
-
+| `function`/| Chức năng của module   |
 ### Các khối thiết kế hiện có
 | File | Khối | Chức năng chính |
 | `rtl/register_file.v` | Register File | Lưu trữ, đọc và ghi dữ liệu thanh ghi |
